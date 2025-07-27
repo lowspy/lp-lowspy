@@ -598,6 +598,20 @@
     });
   });
 </script>
+  <script>
+  setTimeout(() => {
+    const utmParamQueryString = new URLSearchParams(window.location.search);
+    if (utmParamQueryString.toString()) {
+      const navLinks = document.querySelectorAll('a');
+      navLinks.forEach(item => {
+        if (item.href.includes('https://lastlink.com/p/')) {
+          const hasQuery = item.href.includes('?');
+          item.href += (hasQuery ? '&' : '?') + utmParamQueryString.toString();
+        }
+      });
+    }
+  }, 3000);
+</script>
 </body>
 </html>
 
