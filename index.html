@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low Spy</title>
+    <link rel="icon" type="image/webp" href="imagens/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Performance optimization -->
+    <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+    <link rel="preload" href="https://scripts.converteai.net/a5cf0df4-0d5f-481d-ae95-90ca10ccd1d1/players/68840e3d389063254c39bc9e/v4/player.js" as="script">
+    <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+    <link rel="preload" href="https://cdn.converteai.net/a5cf0df4-0d5f-481d-ae95-90ca10ccd1d1/68840e2e0baf9bcf28c4e3dd/main.m3u8" as="fetch">
+    <link rel="dns-prefetch" href="https://cdn.converteai.net">
+    <link rel="dns-prefetch" href="https://scripts.converteai.net">
+    <link rel="dns-prefetch" href="https://images.converteai.net">
+    <link rel="dns-prefetch" href="https://api.vturb.com.br">
+    <style>
+        :root {
+            --gold: hsl(45, 100%, 70%);
+            --gold-dark: hsl(45, 100%, 55%);
+            --gold-light: hsl(45, 100%, 85%);
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .logo-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .login-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 30px 0 20px;
+            text-align: center;
+            background: var(--bg-primary);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-subtitle .update-time {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--bg-primary);
+            padding-bottom: 30px;
+        }
+
+        .vturb-player {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+        }
+
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            padding-bottom: 40px;
+            background: var(--bg-primary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 16px rgba(255, 215, 0, 0.25);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.35);
+        }
+
+        /* Second Section */
+        .second-section {
+            padding: 50px 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .second-section h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+        }
+
+        .second-section h2 .highlight {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-text {
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-text .emphasis {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .section-text .brand-highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .section-highlight {
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
+            font-weight: 600;
+            margin: 30px 0;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Third Section */
+        .third-section {
+            padding: 60px 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-icon {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-img {
+            width: 50px;
+            height: 50px;
+            filter: brightness(0) saturate(100%) invert(81%) sepia(100%) saturate(320%) hue-rotate(0deg) brightness(107%) contrast(102%);
+        }
+
+        .benefit-title {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .benefit-description {
+            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .highlight-text {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .highlight-title {
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .highlight-number {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-subtitle {
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .highlight-description {
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Fourth Section */
+        .fourth-section {
+            padding: 60px 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .fourth-section .section-title {
+            color: var(--text-primary);
+        }
+
+        .fourth-section .section-title .highlight {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .comparison-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-card.negative {
+            border: 1px solid rgba(255, 68, 68, 0.2);
+        }
+
+        .comparison-card.positive {
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .comparison-title {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .comparison-card.negative .comparison-title {
+            color: #ff4444;
+        }
+
+        .comparison-card.positive .comparison-title {
+            color: var(--gold);
+        }
+
+        .comparison-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+            line-height: 1.5;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        .comparison-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon {
+            font-size: 10px;
+            font-weight: normal;
+            flex-shrink: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3px;
+        }
+
+        .negative-icon {
+            background: rgba(255, 68, 68, 0.8);
+            color: var(--text-primary);
+        }
+
+        .positive-icon {
+            background: var(--gold);
+            color: #000000;
+        }
+
+        /* Sixth Section */
+        .sixth-section {
+            padding: 60px 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .sixth-section .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .benefit-item {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .centered-item {
+            grid-column: 1 / -1;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .benefit-item .benefit-title {
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .benefit-item .benefit-description {
+            font-size: clamp(0.95rem, 1.8vw, 1rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .benefit-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .benefit-list li::before {
+            content: "✓";
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--gold);
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Seventh Section */
+        .seventh-section {
+            padding: 60px 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .investment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .price-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            align-self: center;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .price-title {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .price-amount {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .seventh-section .cta-button {
+            display: inline-block;
+            padding: 18px 35px;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: #000000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .seventh-section .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .lock-icon {
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .benefits-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            align-self: stretch;
+        }
+
+        .benefits-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefits-title {
+            font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            line-height: 1.3;
+            text-align: left;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: clamp(0.95rem, 1.8vw, 1rem);
+            line-height: 1.6;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        .benefits-list li::before {
+            content: "✓";
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--gold);
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Eighth Section */
+        .eighth-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .eighth-section .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .guarantee-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .guarantee-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .guarantee-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px auto;
+            color: #000;
+        }
+
+        .guarantee-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .guarantee-text {
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .guarantee-text .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .faq-section {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .faq-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .faq-title .highlight {
+            color: var(--gold);
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .faq-question {
+            padding: 24px 28px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-arrow {
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 28px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            font-size: clamp(0.95rem, 1.8vw, 1rem);
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 28px 24px 28px;
+            max-height: 400px;
+        }
+
+        .faq-answer strong {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        .footer-section {
+            padding: 60px 0 40px 0;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(81%) sepia(100%) saturate(320%) hue-rotate(0deg) brightness(107%) contrast(102%);
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: #666666;
+            margin: 0;
+        }
+
+        /* Animations */
+        .hero h1 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .vturb-player {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-button {
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 30px 0 35px;
+            }
+
+            .cta-button {
+                padding: 12px 28px;
+                font-size: 15px;
+            }
+
+            .header-content {
+                gap: 10px;
+            }
+
+            .second-section, .third-section, .fourth-section, .sixth-section, .seventh-section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                margin-bottom: 40px;
+            }
+
+            .sixth-section .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .third-section .benefits-grid,
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .investment-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                align-items: stretch;
+            }
+
+            .benefit-card, .comparison-card, .benefit-item, .price-card, .benefits-card {
+                padding: 25px;
+            }
+
+            .eighth-section {
+                padding: 60px 0;
+            }
+
+            .eighth-section .section-content {
+                gap: 50px;
+            }
+
+            .guarantee-section {
+                padding: 30px 0;
+            }
+
+            .guarantee-icon {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 25px;
+            }
+
+            .faq-title {
+                margin-bottom: 30px;
+            }
+
+            .faq-question {
+                padding: 20px 24px;
+                margin-left: 15px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 24px 20px 24px;
+            }
+
+            .footer-section {
+                padding: 50px 0 30px 0;
+            }
+
+            .footer-logo-img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .second-section, .third-section, .fourth-section, .sixth-section, .seventh-section {
+                padding: 40px 0;
+            }
+
+            .benefit-card, .comparison-card, .benefit-item, .price-card, .benefits-card {
+                padding: 20px;
+            }
+
+            .icon-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .eighth-section {
+                padding: 50px 0;
+            }
+
+            .eighth-section .section-content {
+                gap: 40px;
+            }
+
+            .guarantee-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 20px;
+            }
+
+            .faq-question {
+                padding: 18px 20px;
+                margin-left: 12px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 20px 18px 20px;
+                max-height: 300px;
+            }
+
+            .footer-section {
+                padding: 40px 0 25px 0;
+            }
+
+            .footer-logo-img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="imagens/logo.webp" alt="Low Spy" class="logo-img">
+                    Low Spy
+                </div>
+                <a href="https://app.lowspy.com.br" class="login-btn" target="_blank">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>
+                Tenha Acesso às Melhores<br>
+                <span class="highlight">Ofertas Low Ticket's</span> 100%<br>
+                Atualizadas
+            </h1>
+            <p class="hero-subtitle">
+                Enquanto o seu Guru te vende ofertas que já foram escaladas e esconde as que 
+                realmente vendem, nós vamos te entregar ofertas escaladas e atualizadas 
+                <span class="update-time">a cada 3 horas</span>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <div class="vturb-player">
+                <vturb-smartplayer id="vid-68840e3d389063254c39bc9e" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <a href="#ancoragem" class="cta-button">Assinar Low Spy Agora!</a>
+        </div>
+    </section>
+
+    <!-- Segunda Sessão -->
+    <section class="second-section">
+        <div class="container">
+            <div class="section-content">
+                <h2>
+                    Pare de Perder Dinheiro com Ofertas<br>
+                    que já foram <span class="highlight">escaladas</span>
+                </h2>
+                
+                <p class="section-text">
+                    <span class="emphasis">Se você está cansado</span> de testar ofertas que já não convertem mais, descobrir que aquela "oferta 
+                    vencedora" já está saturada há semanas, pagar centenas de reais por ferramentas que te entregam 
+                    dados desatualizados...
+                </p>
+                
+                <p class="section-highlight">
+                    Você está no lugar certo.
+                </p>
+                
+                <p class="section-text">
+                    Enquanto outras ferramentas atualizam seus dados uma vez por mês (quando atualizam) e 
+                    manualmente, Nossa ferramenta <span class="brand-highlight">LOW SPY</span> coleta informações a cada 3 horas, 24 horas por dia, até 
+                    mesmo nos finais de semana, tudo automatizado.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terceira Sessão -->
+    <section class="third-section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">O Que Isso Significa Para Você?</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <img src="imagens/1.svg" alt="Ofertas Atualizadas" class="icon-img">
+                        </div>
+                        <h3 class="benefit-title">Ofertas Atualizadas e Escaladas em Tempo real:</h3>
+                        <p class="benefit-description">
+                            Ofertas identificadas, analisadas e entregues a você antes que todo mundo descubra. 
+                            (IDENTIFICAMOS OFERTAS NOVAS A CADA 3 HORAS)
+                        </p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <img src="imagens/2.svg" alt="Performance Real" class="icon-img">
+                        </div>
+                        <h3 class="benefit-title">Performance Real:</h3>
+                        <p class="benefit-description">
+                            Veja exatamente há quantos dias cada anúncio está rodando, se está escalada ou apenas na fase de testes.
+                        </p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <img src="imagens/3.svg" alt="Status Atual" class="icon-img">
+                        </div>
+                        <h3 class="benefit-title">Status Atual:</h3>
+                        <p class="benefit-description">
+                            Se a Oferta não tiver ADS ativos a mais de 5 dias, é deletada automaticamente.
+                        </p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <img src="imagens/4.svg" alt="Vantagem Competitiva" class="icon-img">
+                        </div>
+                        <h3 class="benefit-title">Vantagem Competitiva:</h3>
+                        <p class="benefit-description">
+                            Seja o primeiro a encontrar as próximas ofertas vencedoras
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="highlight-text">
+                    <h3 class="highlight-title">
+                        Mais de <span class="highlight-number" id="animatedNumber">30</span> Ofertas Identificadas Por Dia
+                    </h3>
+                    <p class="highlight-subtitle">(A cada mês atualizamos com novas ofertas)</p>
+                    <p class="highlight-description">
+                        Não estamos falando de "achismos" ou palpites. São ofertas reais, com dados reais, coletados em tempo real.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quarta Sessão -->
+    <section class="fourth-section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">
+                    Por Que a Ferramenta <span class="highlight">Low Spy</span> é diferente?
+                </h2>
+                
+                <p class="section-description">
+                    Você não precisa ficar mais de 5 dias monitorando, aqui dentro você terá ofertas atualizadas e 
+                    escaladas em tempo real. Desde Packs, Guias, Receitas, Ebooks, Cursos, Protocolos, tudo o que você 
+                    precisa para começar a escalar.
+                </p>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card negative">
+                        <h3 class="comparison-title">OUTRAS FERRAMENTAS:</h3>
+                        <ul class="comparison-list">
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Atualização semanal e manual (quando atualizam)
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Dados desatualizados em 90% dos casos
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Preços de R$300 a R$500+ por mês
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Não mostram há quantos dias o ad está rodando
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Interface confusa e lenta
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Suporte inexistente
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon negative-icon">✕</span>
+                                Ofertas já saturadas
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card positive">
+                        <h3 class="comparison-title">A SUA FERRAMENTA:</h3>
+                        <ul class="comparison-list">
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Atualização a cada 3 horas (24h/dia)
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Dados 100% atualizados e precisos
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Preço Justo.
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Mostra exatamente há quantos dias cada ad está ativo
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Interface limpa e rápida
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Suporte Ativo
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Comunidade de Networking (em breve)
+                            </li>
+                            <li class="comparison-item">
+                                <span class="icon positive-icon">✓</span>
+                                Ofertas frescas e escalando
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sexta Sessão -->
+    <section class="sixth-section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">
+                    O Que Você Recebe na Sua <span class="highlight">Assinatura</span>
+                </h2>
+                
+                <div class="benefits-grid">
+                    <!-- Primeira linha - 2 colunas -->
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">Acesso Completo à Plataforma</h3>
+                        <ul class="benefit-list">
+                            <li>Interface exclusiva com todas as ofertas organizadas</li>
+                            <li>Atualizações a cada 3 horas, 24h por dia</li>
+                            <li>Filtros avançados por performance, nicho e tempo ativo</li>
+                            <li>Sistema de favoritos (em breve)</li>
+                            <li>Atualizações mensais na ferramenta</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">Detalhes Que Fazem Diferença</h3>
+                        <p class="benefit-description">
+                            Você não vê só que a oferta está no ar — você vê:
+                        </p>
+                        <ul class="benefit-list">
+                            <li>Data exata da coleta</li>
+                            <li>Status atual e dias de atividade</li>
+                            <li>ID do anúncio e da página</li>
+                            <li>Link direto para o anúncio, oferta e redes sociais</li>
+                            <li>Formatos ativos (Facebook e Instagram)</li>
+                            <li>Criativo mais escalado (em breve)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Segunda linha - 2 colunas -->
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">Atualizações em Tempo Real</h3>
+                        <ul class="benefit-list">
+                            <li>Coleta automática a cada 3 horas</li>
+                            <li>Funciona 24/7 — até em feriados</li>
+                            <li>Mais de 30 ofertas novas por dia</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">Ofertas Categorizadas</h3>
+                        <ul class="benefit-list">
+                            <li>Foco em low tickets com 15 a 65+ anúncios ativos</li>
+                            <li>Apenas ofertas validadas e escaladas</li>
+                            <li>Tendências identificadas automaticamente</li>
+                            <li>Filtros por nicho (em breve)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Terceira linha - 1 coluna centralizada -->
+                    <div class="benefit-item centered-item">
+                        <h3 class="benefit-title">Análise de Performance</h3>
+                        <ul class="benefit-list">
+                            <li>Ofertas que estão escalando agora</li>
+                            <li>Sistema inteligente remove ofertas mortas (sem anúncios por 5 dias)</li>
+                            <li>Histórico de performance e alertas de ofertas em alta</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sétima Sessão - Investimento -->
+    <section id="ancoragem" class="seventh-section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Assine o Low Spy</h2>
+                
+                <div class="investment-grid">
+                    <!-- Coluna do Preço (esquerda) -->
+                    <div class="price-card">
+                        <h3 class="price-title">Low Spy</h3>
+                        <p class="price-subtitle">De <s>R$197/Mês</s> por apenas:</p>
+                        <div class="price-amount">R$97/mês</div>
+                        <a href="https://lastlink.com/p/C85B4C1D3/checkout-payment/" class="cta-button" target="_blank">
+                            Assinar Low Spy!
+                        </a>
+                        <div class="security-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="lock-icon">
+                                <path d="M6 10h12v10H6V10zm3-4a3 3 0 116 0v4H9V6z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                            Compra 100% Segura processada pela LastLink.
+                        </div>
+                    </div>
+
+                    <!-- Coluna dos Benefícios (direita) -->
+                    <div class="benefits-card">
+                        <h3 class="benefits-title">Veja tudo que está incluso:</h3>
+                        <ul class="benefits-list">
+                            <li>Plataforma Completa de Ofertas</li>
+                            <li>Atualizações a Cada 3 Horas (24h/dia)</li>
+                            <li>Ofertas Atualizados todos os dias.</li>
+                            <li>Status e Dias Ativos de Cada OFERTA</li>
+                            <li>Links Diretos Para Anúncios e Ofertas</li>
+                            <li>Filtros Avançados Por Nicho (em breve)</li>
+                            <li>Suporte Técnico.</li>
+                            <li>Garantia de 7 Dias.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oitava Sessão - Garantia + FAQ -->
+    <section class="eighth-section">
+        <div class="container">
+            <div class="section-content">
+                <!-- Garantia em cima -->
+                <div class="guarantee-section">
+                    <div class="guarantee-content">
+                        <div class="guarantee-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3 class="guarantee-title">GARANTIA DE 7 DIAS</h3>
+                        <p class="guarantee-text">
+                            Se nos primeiros 7 dias você não encontrar pelo menos 
+                            <span class="highlight">7 ofertas com potencial real</span>, devolvemos 
+                            <span class="highlight">100% do seu dinheiro</span>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ embaixo -->
+                <div class="faq-section">
+                    <h3 class="faq-title">Perguntas <span class="highlight">Frequentes</span></h3>
+                    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Como funciona a atualização a cada 3 horas?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> Nossa ferramenta roda automaticamente a cada 3 horas, coletando dados novos da biblioteca de anúncios. Isso significa que você sempre tem os dados mais frescos possível.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Quantas ofertas novas são identificadas por dia?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> Em média, identificamos mais de 30 ofertas novas por dia (Julho/2025). Isso inclui ofertas que estão começando a escalar e ofertas já testadas que continuam performando.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Como sei se uma oferta ainda está convertendo?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> Mostramos exatamente há quantos dias cada anúncio está rodando. Se está rodando há mais de 5 dias consecutivos, é porque está dando resultado. Ofertas ruins são pausadas rapidamente. E se já passou 5 dias e não teve ads ativos, deletamos da nossa ferramenta.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Posso cancelar a qualquer momento?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> Sim, você pode cancelar sua assinatura a qualquer momento. Não temos fidelidade. Se não estiver satisfeito, cancela e pronto.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Como é o suporte?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> Você tem acesso direto a um Suporte para tirar Dúvidas. Respondo e resolvo pessoalmente todas as dúvidas, sugestões e bugs.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>A ferramenta funciona para todos os nichos?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> Focamos principalmente em ofertas low ticket (15-65+ ads ativos), que são as que mais convertem em Tráfego Frio. Coletamos de diversos nichos: saúde, relacionamento, renda extra, beleza, packs, etc.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Tem versão mobile?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> A plataforma é responsiva e funciona perfeitamente no celular. Você pode acessar de qualquer lugar.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Como faço para começar?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> É só clicar no botão de acesso, fazer o pagamento e em poucos segundos você recebe o login, cria a sua senha e pode começar a utilizar a ferramenta.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>E se eu não souber usar?</span>
+                                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <strong>R:</strong> A interface é super simples e intuitiva de usar, além disso terá um tutorial explicando (em breve).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="imagens/logo.webp" alt="Low Spy" class="footer-logo-img">
+                </div>
+                
+                <div class="footer-info">
+                    <p class="footer-copyright">© 2025 Low Spy. Todos os direitos reservados.</p>
+                    <p class="footer-tagline">Ofertas Low Ticket atualizadas a cada 3 horas</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Player Script -->
+    <script type="text/javascript">
+        var s=document.createElement("script");
+        s.src="https://scripts.converteai.net/a5cf0df4-0d5f-481d-ae95-90ca10ccd1d1/players/68840e3d389063254c39bc9e/v4/player.js";
+        s.async=!0;
+        document.head.appendChild(s);
+    </script>
+    
+    <script>
+        // Animação do número
+        document.addEventListener('DOMContentLoaded', function() {
+            const numberElement = document.getElementById('animatedNumber');
+            const minNumber = 30;
+            const maxNumber = 40;
+            
+            function animateNumber() {
+                // Gera um número aleatório entre 30 e 40
+                const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+                numberElement.textContent = randomNumber;
+            }
+            
+            // Inicia a animação após 1 segundo
+            setTimeout(() => {
+                setInterval(animateNumber, 1500);
+            }, 1000);
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Fecha todos os itens
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Abre o item clicado se não estava ativo
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "sl86olyy3s");
+</script>
+</body>
+</html>
