@@ -566,6 +566,27 @@
     }, 5000); // espera 5 segundos após o carregamento total
   });
 </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      if (question && answer) {
+        question.addEventListener('click', () => {
+          item.classList.toggle('aberto');
+          answer.style.display = item.classList.contains('aberto') ? 'block' : 'none';
+        });
+
+        // Esconde todas as respostas por padrão
+        answer.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
 
