@@ -566,7 +566,7 @@
     }, 5000); // espera 5 segundos após o carregamento total
   });
 </script>
-  <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const faqItems = document.querySelectorAll(".faq-item");
 
@@ -575,21 +575,29 @@
       const answer = item.querySelector(".faq-answer");
 
       if (question && answer) {
-        question.addEventListener("click", () => {
-          const isOpen = item.classList.toggle("aberto");
-          answer.style.maxHeight = isOpen ? answer.scrollHeight + "px" : null;
-        });
-
-        // Inicialmente esconder
+        // Esconde inicialmente
         answer.style.overflow = "hidden";
         answer.style.maxHeight = null;
         answer.style.transition = "max-height 0.3s ease";
+
+        question.addEventListener("click", () => {
+          // Fecha todos
+          faqItems.forEach(i => {
+            if (i !== item) {
+              i.classList.remove("aberto");
+              const ans = i.querySelector(".faq-answer");
+              if (ans) ans.style.maxHeight = null;
+            }
+          });
+
+          // Alterna o item atual
+          const isOpen = item.classList.toggle("aberto");
+          answer.style.maxHeight = isOpen ? answer.scrollHeight + "px" : null;
+        });
       }
     });
   });
 </script>
-
-
 </body>
 </html>
 
