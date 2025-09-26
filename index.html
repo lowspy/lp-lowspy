@@ -344,14 +344,14 @@
                         <h3 class="price-title">Low Spy</h3>
                         <p class="price-subtitle">De <s>R$297/Mês</s> por apenas:</p>
                         <div class="price-amount">R$147/mês</div>
-                        <a href="https://lastlink.com/p/C85B4C1D3/checkout-payment/" class="cta-button" target="_blank">
+                        <a href="https://pay.zouti.com.br/checkout?poi=prod_offer_pbs2wv2e8wecau91neey1w" class="cta-button" target="_blank">
                             Assinar Low Spy!
                         </a>
                         <div class="security-badge">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="lock-icon">
                                 <path d="M6 10h12v10H6V10zm3-4a3 3 0 116 0v4H9V6z" stroke="currentColor" stroke-width="2" fill="none"/>
                             </svg>
-                            Compra 100% Segura processada pela LastLink.
+                            Compra 100% Segura processada pela Zouti.
                         </div>
                     </div>
 
@@ -604,7 +604,7 @@
     if (utmParamQueryString.toString()) {
       const navLinks = document.querySelectorAll('a');
       navLinks.forEach(item => {
-        if (item.href.includes('https://lastlink.com/p/')) {
+        if (item.href.includes('https://pay.zouti.com.br/checkout')) {
           const hasQuery = item.href.includes('?');
           item.href += (hasQuery ? '&' : '?') + utmParamQueryString.toString();
         }
